@@ -1,0 +1,103 @@
+/* General setup */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  min-width: 1000px;
+  max-width: 1400px;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+
+header, section, aside, nav, footer {
+  padding: 20px;
+}
+
+/* Layout */
+header, footer {
+  border-top: 5px solid #a66;
+  border-bottom: 5px solid #a66;
+  text-align: center;
+}
+
+section {
+  float: left;
+  width: 50%;
+}
+
+aside {
+  float: left;
+  width: 30%;
+}
+
+nav {
+  float: left;
+  width: 20%;
+  padding-left: 40px; /* Adjust padding for nav to align with aside */
+}
+
+footer {
+  clear: both;
+}
+
+/* Navigation styling */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav li {
+  margin: 20px 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #a66;
+  border: 1px solid #a66;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  box-shadow: inset 1px 1px 1px;
+}
+
+/* Additional styling */
+header h1 {
+  font-family: 'Times New Roman', serif;
+  font-size: 3em;
+  margin: 0;
+}
+
+section h2, aside h2 {
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+}
+
+section p, section ul {
+  font-size: 1.2em;
+  line-height: 1.6em;
+}
+
+section ul {
+  padding-left: 20px;
+}
+
+section ul li {
+  list-style-type: square;
+  margin: 5px 0;
+}
+
+/* Links */
+a {
+  color: #a66;
+}
+
+a:visited {
+  color: #555;
+}
+a[href*="http"]{
+  padding-right: 19px;
+  background: url('external-link-52.png') no-repeat 100% 0;
+  background-size: 16px 16px;
+}
