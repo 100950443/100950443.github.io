@@ -1,3 +1,11 @@
+
+//	Name: sneh patel
+//   File: sneh.html
+//	Date: 21-june-2024
+//	description: In this article we will write a classic "bouncing balls" demo, to show you how useful objects can be in JavaScript.
+
+
+
 // setup canvas
 
 const canvas = document.querySelector("canvas");
