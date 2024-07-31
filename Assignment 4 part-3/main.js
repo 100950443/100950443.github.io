@@ -93,7 +93,7 @@ while (balls.length < 25) {
 
   balls.push(ball);
 }
-
+//the code for the the loop
 function loop() {
   ctx.fillStyle = "rgb(0 0 0 / 25%)";
   ctx.fillRect(0, 0, width, height);
