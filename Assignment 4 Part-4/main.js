@@ -34,14 +34,13 @@ class Shape {
   }
 }
 // Ball class
-class Ball {
+class Ball extends Shape {
   constructor(x, y, velX, velY, color, size) {
-    this.x = x;
-    this.y = y;
-    this.velX = velX;
-    this.velY = velY;
+    super(x,y, velX, velY);
     this.color = color;
     this.size = size;
+    // properly to track if the ball is there.
+    this.exists = true;
   }
 // Code to draw the ball
   draw() {
@@ -76,7 +75,7 @@ class Ball {
 
   collisionDetect() {
     for (const ball of balls) {
-      if (this !== ball) {
+      if (!(this === ball) && ball.exists) {
         const dx = this.x - ball.x;
         const dy = this.y - ball.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -88,8 +87,76 @@ class Ball {
     }
   }
 }
+// EvilCricle class for shape
+class EvilCircle extends Shape {
+   constructor(x,y) {
+    super(x,y, 20, 20);
+    this.color = 'white';
+    this.size = 10;
+
+    // event listerner for keydown to move the evil circle
+    window.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "a":
+          this.x -= this.velX;
+          break;
+        case "d":
+          this.x += this.velX;
+          break;
+        case "w":
+          this.y -= this.velY;
+          break;
+        case "s":
+          this.y += this.velY;
+          break;      
+      }
+    });
+  }
+} 
+
+// Method to draw the evil circle
+   draw() {
+     ctx.beginPath();
+     ctx.lineWidth = 3;
+     ctx.strokeStyle = this.color;
+     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+     ctx.stroke();
+}
+// Method to keep the evil circle inside the boundaries
+checkBounds() {
+  if ((this.x + this.size) >= width) {
+    this.x = width - this.size;
+  }
+  if ((this.x - this.size) <= 0) {
+    this.x = this.size;
+  }
+  if ((this.y - this.size) >= height) {
+    this.y = height - this.size;
+  }
+  if ((this.y - this.size) <= 0) {
+    this.y = this.size;
+  }
+}
+
+// Method to detect collisions with balls and "eat" them
+collisionDetect() {
+  for (const ball of balls) {
+    if (ball.exists) {
+      const dx = this.x - ball.x;
+      const dy = this.y - ball.y;
+      const distance = Math.sqrt(dx * dc + dy * dy);
+      if (distance < this.size + ball.size) {
+        ball.exists = false;
+        ballCount--;
+        updateBallCount();
+      }
+    }
+  }
+}
 
 const balls = [];
+
+// Create 25 balls with random properties
 
 while (balls.length < 25) {
   const size = random(10, 20);
@@ -104,15 +171,29 @@ while (balls.length < 25) {
 
   balls.push(ball);
 }
+// Create the evil circle with initial position
+const EvilCircle = new EvilCircle(random(0,width), random(0, height));
+let ballCount = balls.length;
+//Create and add a paragraph element to display the ball count
+const ballCountDisplay = document.createElement('p');
+ballCountDisplay.textContent = 'Ball count: ${ballcount}';
+document.body.appendChild(ballCountDisplay);
+//Function to update the ball count dispaly
+function  updateBallCount() {
+  ballCountDisplay.textContent = 'Ball Count: ${ballCount}';
+}
 //the code for the the loop
 function loop() {
   ctx.fillStyle = "rgb(0 0 0 / 25%)";
   ctx.fillRect(0, 0, width, height);
 
+  // Draw, detect collisions and update for each ball if it exists
   for (const ball of balls) {
-    ball.draw();
+    if (ball.exists) {
+      ball.draw();
     ball.update();
     ball.collisionDetect();
+    }
   }
 // Calling loop repeatedly to make next frame
   requestAnimationFrame(loop);
