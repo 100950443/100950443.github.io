@@ -89,7 +89,7 @@ class Ball extends Shape {
 }
 // EvilCricle class for shape
 class EvilCircle extends Shape {
-   constructor(x,y) {
+  constructor(x,y) {
     super(x,y, 20, 20);
     this.color = 'white';
     this.size = 10;
@@ -112,7 +112,7 @@ class EvilCircle extends Shape {
       }
     });
   }
-} 
+
 
 // Method to draw the evil circle
    draw() {
@@ -121,38 +121,40 @@ class EvilCircle extends Shape {
      ctx.strokeStyle = this.color;
      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
      ctx.stroke();
-}
+ }
 // Method to keep the evil circle inside the boundaries
-checkBounds() {
-  if ((this.x + this.size) >= width) {
-    this.x = width - this.size;
-  }
-  if ((this.x - this.size) <= 0) {
-    this.x = this.size;
-  }
-  if ((this.y - this.size) >= height) {
-    this.y = height - this.size;
-  }
-  if ((this.y - this.size) <= 0) {
-    this.y = this.size;
-  }
-}
+  checkBounds() {
+    if ((this.x + this.size) >= width) {
+      this.x = width - this.size;
+    }
+    if ((this.x - this.size) <= 0) {
+      this.x = this.size;
+    }
+    if ((this.y - this.size) >= height) {
+      this.y = height - this.size;
+    }
+    if ((this.y - this.size) <= 0) {
+      this.y = this.size;
+    }
+ }
 
 // Method to detect collisions with balls and "eat" them
-collisionDetect() {
-  for (const ball of balls) {
-    if (ball.exists) {
-      const dx = this.x - ball.x;
-      const dy = this.y - ball.y;
-      const distance = Math.sqrt(dx * dc + dy * dy);
-      if (distance < this.size + ball.size) {
-        ball.exists = false;
-        ballCount--;
-        updateBallCount();
+  collisionDetect() {
+    for (const ball of balls) {
+      if (ball.exists) {
+        const dx = this.x - ball.x;
+        const dy = this.y - ball.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.size + ball.size) {
+          ball.exists = false;
+          ballCount--;
+          updateBallCount();
+        }
       }
     }
   }
-}
+}  
 
 const balls = [];
 
@@ -176,11 +178,12 @@ const EvilCircle = new EvilCircle(random(0,width), random(0, height));
 let ballCount = balls.length;
 //Create and add a paragraph element to display the ball count
 const ballCountDisplay = document.createElement('p');
-ballCountDisplay.textContent = 'Ball count: ${ballcount}';
+ballCountDisplay.textContent = `Ball count: ${ballCount}`;
 document.body.appendChild(ballCountDisplay);
+
 //Function to update the ball count dispaly
 function  updateBallCount() {
-  ballCountDisplay.textContent = 'Ball Count: ${ballCount}';
+  ballCountDisplay.textContent = `Ball Count: ${ballCount}`;
 }
 //the code for the the loop
 function loop() {
@@ -191,8 +194,8 @@ function loop() {
   for (const ball of balls) {
     if (ball.exists) {
       ball.draw();
-    ball.update();
-    ball.collisionDetect();
+      ball.update();
+      ball.collisionDetect();
     }
   }
 // Draw, check bounds, and detect collisions for the evil circle
