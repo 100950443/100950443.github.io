@@ -1,3 +1,12 @@
+/*<!--
+Name: Sneh Patel
+File: Index.html
+Date: 01 August 2024
+Description: in this code we are making the image galler */
+
+
+
+
 const displayedImage = document.querySelector('.displayed-img');
 const thumbBar = document.querySelector('.thumb-bar');
 
