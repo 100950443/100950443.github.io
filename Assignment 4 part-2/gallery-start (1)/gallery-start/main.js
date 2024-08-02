@@ -21,7 +21,7 @@ const altText = {
     'pic4.jpg': 'Section of wall from a pharaoh\'s tomb',
     'pic5.jpg': 'Large moth on a leaf'
 };
-/* Looping through images */
+
 
 // Add event listener for the button to toggle darken/lighten effect
 
