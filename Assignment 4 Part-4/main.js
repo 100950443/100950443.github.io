@@ -195,6 +195,11 @@ function loop() {
     ball.collisionDetect();
     }
   }
+// Draw, check bounds, and detect collisions for the evil circle
+EvilCircle.draw();
+EvilCircle.checkBounds();
+EvilCircle.collisionDetect();
+  
 // Calling loop repeatedly to make next frame
   requestAnimationFrame(loop);
 }
