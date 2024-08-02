@@ -20,4 +20,37 @@ const insertX = ["Willy the Goblin", "Big Daddy", "Father Christmas"];
 const insertY = ["the soup kitchen", "Disneyland", "the White House"];
 const insertZ = ["spontaneously combusted", "melted into a puddle on the sidewalk", "turned into a slug and crawled away"];
 
-
+// Event Listener for the button
+randomize.addEventListener('click', result);
+function result() {
+// Create a new story each time the button is pressed
+    let newStory = storyText;
+    
+// Get random values from arrays
+    const xItem = randomValueFromArray(insertX);
+    const yItem = randomValueFromArray(insertY);
+    const zItem = randomValueFromArray(insertZ);
+    
+// Replace placeholders with random values
+    newStory = newStory.replace(':insertx:', xItem);
+    newStory = newStory.replace(':insertx:', xItem);
+    newStory = newStory.replace(':inserty:', yItem);
+    newStory = newStory.replace(':insertz:', zItem);
+    
+// Replace 'Bob' with custom name if provided
+    if(customName.value !== '') {
+      const name = customName.value;
+      newStory = newStory.replace('Bob', name);
+    }
+    
+// Convert units if UK is selected
+    if(document.getElementById('uk').checked) {
+      const weight = Math.round(300 * 0.071429) + ' stone';
+      const temperature = Math.round((94 - 32) * 5 / 9) + ' centigrade';
+      newStory = newStory.replace('300 pounds', weight);
+      newStory = newStory.replace('94 fahrenheit', temperature);
+    }
+    
+// Display the new story
+    story.textContent = newStory;
+  }
