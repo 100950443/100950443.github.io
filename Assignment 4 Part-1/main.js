@@ -53,4 +53,6 @@ function result() {
     
 // Display the new story
     story.textContent = newStory;
+
+    story.style.visibility = 'visible'
   }
