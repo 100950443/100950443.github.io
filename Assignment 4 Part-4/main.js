@@ -173,8 +173,8 @@ while (balls.length < 25) {
 
   balls.push(ball);
 }
+
 // Create the evil circle with initial position
-const EvilCircle = new EvilCircle(random(0,width), random(0, height));
 let ballCount = balls.length;
 //Create and add a paragraph element to display the ball count
 const ballCountDisplay = document.createElement('p');
@@ -185,6 +185,7 @@ document.body.appendChild(ballCountDisplay);
 function  updateBallCount() {
   ballCountDisplay.textContent = `Ball Count: ${ballCount}`;
 }
+const evilCircle = new EvilCircle(random(0,width), random(0, height));
 //the code for the the loop
 function loop() {
   ctx.fillStyle = "rgb(0 0 0 / 25%)";
@@ -199,9 +200,9 @@ function loop() {
     }
   }
 // Draw, check bounds, and detect collisions for the evil circle
-EvilCircle.draw();
-EvilCircle.checkBounds();
-EvilCircle.collisionDetect();
+  evilCircle.draw();
+  evilCircle.checkBounds();
+  evilCircle.collisionDetect();
   
 // Calling loop repeatedly to make next frame
   requestAnimationFrame(loop);
