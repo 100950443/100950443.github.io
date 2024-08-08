@@ -1,3 +1,12 @@
+/*Name: sneh patel
+    File: sneh.html
+	Date: 21-june-2024
+	description: presented with a fictional nature site displaying a "factual" article about bears*/
+
+
+
+
+
 // functionality for showing/hiding the comments section
 
 const showHideBtn = document.querySelector('.show-hide');
